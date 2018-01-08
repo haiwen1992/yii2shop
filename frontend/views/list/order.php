@@ -69,7 +69,6 @@
                     <input type="radio" value="1" name="address_id"/><?=$a['name']?>  <?=$a['phone']?>
                     <?=$a['cmbprovince']?> <?=$a['cmbcity']?> <?=$a['cmbarea']?> <?=$a['detailed']?> </p>
                 <?php endforeach;?>
-                <input type="radio" value="1" name="address_id"/>李四  17002810530  四川省 成都市 高新区 和平街 </p>
             </div>
 
 
@@ -167,6 +166,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php $a = 0;?>
                 <?php foreach ($models as $model):?>
                 <tr data-id="<?=$model->id?>">
                     <td class="col1"><a href=""><img src="<?=$model->logo?>" alt="" /></a>  <strong><a href="">【1111购物狂欢节】<?=$model->name?></a></strong></td>
@@ -174,6 +174,7 @@
                     <td class="col4"><?=$cart[$model->id]?></td>
                     <td class="col5"><span><?=$model->shop_price*$cart[$model->id]?></span></td>
                 </tr>
+                    <?php $a+=$model->shop_price*$cart[$model->id]?>
                 <?php endforeach;?>
                 </tbody>
                 <tfoot>
@@ -182,7 +183,7 @@
                         <ul>
                             <li>
                                 <span>4 件商品，总商品金额：</span>
-                                <em>￥5316.00</em>
+                                <em>￥<?=$a?></em>
                             </li>
                             <li>
                                 <span>运费：</span>
@@ -190,7 +191,7 @@
                             </li>
                             <li>
                                 <span>应付总额：</span>
-                                <em>￥5076.00</em>
+                                <em>￥<?=$a?></em>
                             </li>
                         </ul>
                     </td>

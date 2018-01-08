@@ -125,7 +125,7 @@ class UserController extends Controller{
     }
     //注销
     public function actionLogout(){
-        \Yii::$app->user->login();
+        \Yii::$app->user->logout();
         echo '已退出';
     }
 //修改密码

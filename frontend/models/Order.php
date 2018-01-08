@@ -17,8 +17,8 @@ class Order extends  ActiveRecord{
     public function rules()
     {
         return[
-            [['member_id','name', 'province','city','area','address','tel'], 'required'],
-            [[],'safe']
+            [['member_id','name', 'province','city','area','address','tel','address_id'], 'required'],
+           [['delivery_id','delivery_name','delivery_price','payment_id','payment_name','total','create_time'],'safe']
         ];
     }
 }

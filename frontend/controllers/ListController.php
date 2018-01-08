@@ -169,8 +169,8 @@ public function actionOrder(){
            if($request->isPost){
                $order = new Order();
                $order->load($request->post(),'');
-               var_dump($request->post());
-               die;
+//               var_dump($request->post());
+//               die;
                $address = Address::findOne(['id'=>$order->address_id]);
                $order->member_id = \Yii::$app->user->id;//用户的id
                $order->name = $address->name;//收货人姓名
@@ -249,6 +249,11 @@ public function actionSuccess(){
 }
 //查看订单列表
 public function actionOrderlist(){
+//   $order = new Order();
+//   $order = Order::find()->where(['member_id'=>\Yii::$app->user->id])->all();
+////    $ordergoods = OrderGoods::find()->where(['order_id'=>$order->id])->all();
+//   var_dump($order->id);
+//   die;
     return $this->render('status');
 }
 }
