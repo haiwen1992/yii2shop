@@ -54,6 +54,7 @@
 <div style="clear:both;"></div>
 
 <!-- 主体部分 start -->
+
 <div class="mycart w990 mt10 bc">
     <h2><span>我的购物车</span></h2>
     <table id="table">
