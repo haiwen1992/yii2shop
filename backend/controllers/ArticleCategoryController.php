@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\filters\RbacFilter;
 use backend\models\ArticleCategory;
 use yii\test\InitDbFixture;
 use yii\web\Controller;
@@ -65,13 +66,22 @@ class ArticleCategoryController extends Controller{
     }
 //删除
 public function actionDelete($id){
-//    //根据id
-//     $model = ArticleCategory::findOne(['id'=>$id]);
-////     //get方式传过来
-//////     $delete->load($request->get());
-//    $model->status = -1;
-//    $model->save();
-    ArticleCategory::updateAll(['status'=>-1],['id'=>$id]);
+    //根据id
+     $model = ArticleCategory::findOne(['id'=>$id]);
+//     //get方式传过来
+////     $delete->load($request->get());
+    $model->status = -1;
+    $model->save();
+//    ArticleCategory::updateAll(['status'=>-1],['id'=>$id]);
 }
+    public function behaviors()
+    {
+        return[
+            'rbac'=>[
+                'class'=>RbacFilter::className(),
+                'except'=>['login','logout','upload','captcha'],
+            ],
 
+        ];
+    }
 }

@@ -34,16 +34,48 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+//    $menuItems = [
+//        ['label' => '首页', 'url' => ['/user/login']],
+//        ['label' => '品牌管理', 'items' => [
+//            ['label' => '品牌列表', 'url' => ['/brand/index']],
+//            ['label' => '添加品牌', 'url' => ['/brand/add']],
+//        ]],
+//        ['label' => '文章管理', 'items' => [
+//            ['label' => '文章列表', 'url' => ['/article/index']],
+//            ['label' => '添加文章', 'url' => ['/article/add']],
+//            ['label' => '文章分类列表', 'url' => ['/article-category/index']],
+//            ['label' => '添加文章分类', 'url' => ['/article-category/add']],
+//        ]],
+//        ['label' => '商品管理', 'items' => [
+//            ['label' => '商品列表', 'url' => ['/goods/index']],
+//            ['label' => '添加商品', 'url' => ['/goods/add']],
+//            ['label' => '商品分类列表', 'url' => ['/goods-category/index']],
+//            ['label' => '添加商品分类', 'url' => ['/goods-category/add']],
+//        ]],
+//        ['label' => '用户管理', 'items' => [
+//            ['label' => '用户列表', 'url' => ['/user/index']],
+//            ['label' => '添加用户', 'url' => ['/user/add']],
+//        ]],
+//        ['label' => 'RBAC', 'items' => [
+//            ['label' => '权限列表', 'url' => ['/auth-item/index']],
+//            ['label' => '添加权限', 'url' => ['/auth-item/addit']],
+//            ['label' => '角色列表', 'url' => ['/auth-item/indexr']],
+//            ['label' => '添加角色', 'url' => ['/auth-item/addr']],
+//        ]],
+//        ['label'=>'修改密码','url'=>['/user/edi']],
+//
+//    ]
+    $menuItems = [];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Login', 'url' => ['/user/login']];
     } else {
+        $menuItems = Yii::$app->user->identity->getMenus();
+//        var_dump($menuItems);
+//        die;
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                '退出登录 (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

@@ -1,4 +1,5 @@
 <table id="table" class="table table-bordered">
+    <h1>品牌列表</h1>
     <tr>
         <th>id</th>
         <th>名称</th>
@@ -9,7 +10,7 @@
         <th>操作</th>
     </tr>
     <?php foreach ($brand as $brands):?>
-        <tr>
+        <tr id="<?=$brands->id?>">
             <td><?=$brands->id?></td>
             <td><?=$brands->name?></td>
             <td><?=$brands->intro?></td>
@@ -22,7 +23,7 @@
 
             <td>
                 <?=\yii\bootstrap\Html::a('修改',['brand/edit','id'=>$brands->id],['class'=>'btn btn-warning'])?>
-                <?=\yii\bootstrap\Html::a('删除',['brand/delete','id'=>$brands->id],['class'=>'btn btn-warning'])?>
+                <a id="delete" class="btn btn-warning">删除</a>
             </td>
         </tr>
     <?php endforeach;?>
@@ -33,13 +34,17 @@
 /*
  * @var $this \yii\web\View
  */
-$url = \Yii\helpers\Url::to(['Brand/delete']);
+$url = \Yii\helpers\Url::to(['brand/delete']);
 $js=<<<JS
-   $("#table").on('click','.btn-warning',function(){
+   $("#table").on('click','#delete',function(){
+       // alert('11111');
        var tr = $(this).closest('tr');
-           tr.remove();
-           $.get("$url",{id:tr.attr('id')},function(){   
+       if(confirm('请再次确认')){
+            $.get("$url",{id:tr.attr('id')},function(){   
+                tr.remove();
            });
+       }
+       
    });
 JS;
 $this->registerJs($js);

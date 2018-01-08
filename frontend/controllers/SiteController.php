@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use frontend\models\Address;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -12,12 +13,15 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\Request;
 
 /**
  * Site controller
  */
 class SiteController extends Controller
 {
+    //关闭验证
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -210,4 +214,26 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    //收货地址管理
+    public function actionRindex(){
+        $model = Address::find()->all();
+        return $this->render('rindex',['model'=>$model]);
+    }
+        //添加
+        public function actionRadd(){
+            $request = Yii::$app->request;
+            $model = new Address();
+//            var_dump($model);exit;
+            if($request->isPost){
+//                var_dump($model);exit;
+                $model->load($request->post(),'');
+                if($model->validate()){
+                    $model->save();
+                    return $this->redirect(['site/index']);
+                }
+                var_dump($model->getErrors());
+            }
+            return $this->render('radd',['model'=>$model]);
+        }
+
 }
