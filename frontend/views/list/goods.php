@@ -594,8 +594,8 @@
             <div class="goodsinfo fl ml10">
                 <ul>
                     <li><span>商品编号： </span>971344</li>
-                    <li class="market_price"><span>定价：</span><em>￥6399.00</em></li>
-                    <li class="shop_price"><span>本店价：</span> <strong>￥6299.00</strong> <a href="">(降价通知)</a></li>
+                    <li class="market_price"><span>定价：</span><em>￥<?=$goods->market_price?></em></li>
+                    <li class="shop_price"><span>本店价：</span> <strong>￥<?=$goods->shop_price?></strong> <a href="">(降价通知)</a></li>
                     <li><span>上架时间：</span>2012-09-12</li>
                     <li class="star"><span>商品评分：</span><?=$goods->view_times?></li> <!-- 此处的星级切换css即可 默认为5星 star4 表示4星 star3 表示3星 star2表示2星 star1表示1星 -->
                 </ul>
