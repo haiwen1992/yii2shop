@@ -69,6 +69,7 @@
                     <input type="radio" value="1" name="address_id"/><?=$a['name']?>  <?=$a['phone']?>
                     <?=$a['cmbprovince']?> <?=$a['cmbcity']?> <?=$a['cmbarea']?> <?=$a['detailed']?> </p>
                 <?php endforeach;?>
+                <input type="radio" value="1" name="address_id"/>李四  17002810530  四川省 成都市 高新区 和平街 </p>
             </div>
 
 
@@ -191,7 +192,7 @@
                             </li>
                             <li>
                                 <span>应付总额：</span>
-                                <em>￥<?=$a?></em>
+                                <em>￥5076.00</em>
                             </li>
                         </ul>
                     </td>

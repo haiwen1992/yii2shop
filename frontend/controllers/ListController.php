@@ -250,11 +250,14 @@ public function actionSuccess(){
 //查看订单列表
 public function actionOrderlist(){
 //   $order = new Order();
-//   $order = Order::find()->where(['member_id'=>\Yii::$app->user->id])->all();
-////    $ordergoods = OrderGoods::find()->where(['order_id'=>$order->id])->all();
-//   var_dump($order->id);
-//   die;
-    return $this->render('status');
+   $order = Order::find()->where(['member_id'=>\Yii::$app->user->id])->all();
+//    $ordergoods = OrderGoods::find()->where(['order_id'=>$order->id])->all();
+//    foreach ($order as $o){
+//        var_dump($o->id);
+//        die;
+//    };
+
+    return $this->render('status',['order'=>$order]);
 }
 }
 

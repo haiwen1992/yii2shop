@@ -35,7 +35,7 @@ class MemberController extends Controller{
               //设置提示信息
               \Yii::$app->session->setFlash('success','添加成功');
               //跳转到首页
-             return $this->redirect(['list/list']);
+             return $this->redirect(['site/index']);
           }
               //验证失败打印错误信息
               var_dump($model->getErrors());
