@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 
+use Codeception\Module\Redis;
 use frontend\models\Cart;
 use frontend\models\Member;
 use frontend\models\Login;
@@ -32,8 +33,19 @@ class MemberController extends Controller{
 
            //保存
               $model->save('false');
-              //设置提示信息
-              \Yii::$app->session->setFlash('success','添加成功');
+              //发邮件
+              \Yii::$app->mailer->compose()
+                  //Yii::$app->mailer->compose()
+                  ->setFrom('18180921302@163.com')
+                  ->setTo($model->email)
+                  ->setSubject('邮件主题:京西商城注册')
+                  ->setHtmlBody('
+         <span style="color: #1006F1">京西商城</span>开业!!!全国最低
+         ')
+                  ->send();
+             //发邮件技术 上
+//              //设置提示信息
+//              \Yii::$app->session->setFlash('success','添加成功');
               //跳转到首页
              return $this->redirect(['site/index']);
           }
@@ -87,7 +99,8 @@ class MemberController extends Controller{
                 //提示信息
                 //\Yii::$app->session->setFlash('success','登录成功');
                 //成功跳转页面
-                return $this->redirect(['site/index']);
+//               return $this->render('@web/index.html');
+                return $this->redirect('/index.html');
             }
         }
         return $this->render('login',['model'=>$model]);
@@ -95,7 +108,7 @@ class MemberController extends Controller{
     //注销
     public function actionLogout(){
         \Yii::$app->user->logout();
-        return $this->redirect(['site/index']);
+        return $this->redirect('index.html');
 //        \Yii::$app->user->login();
 //        echo '已退出';
     }
@@ -189,6 +202,30 @@ class MemberController extends Controller{
             ],
         ];
     }
+//发邮件技术
+public function actionEmail(){
+      $requst =\Yii::$app->mailer->compose()
+    //Yii::$app->mailer->compose()
+        ->setFrom('18180921302@163.com')
+         ->setTo('18180921302@163.com')
+         ->setSubject('邮件主题:京西商城搞活动')
+         ->setHtmlBody('
+         <span style="color: #1006F1">邮件内容</span>大煞风景是单例饭卡手动阀世纪东方
+         ')
+         ->send();
+        var_dump($requst);
+}
+ //redis练习
+    public function actionRedis(){
+      $redis = new \Redis();
+      $redis->set('name','张三');
+      $redis->expire('name',30);
+      $redis->set('age',18);
+      if($redis->ttl('name')){
+         $redis->incr('age');
+      }else{
+          $redis->decr('age');
+      }
 
-
+    }
 }

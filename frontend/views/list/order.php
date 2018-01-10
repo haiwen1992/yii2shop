@@ -69,7 +69,7 @@
                     <input type="radio" value="1" name="address_id"/><?=$a['name']?>  <?=$a['phone']?>
                     <?=$a['cmbprovince']?> <?=$a['cmbcity']?> <?=$a['cmbarea']?> <?=$a['detailed']?> </p>
                 <?php endforeach;?>
-                <input type="radio" value="1" name="address_id"/>李四  17002810530  四川省 成都市 高新区 和平街 </p>
+<!--                <input type="radio" value="1" name="address_id"/>李四  17002810530  四川省 成都市 高新区 和平街 </p>-->
             </div>
 
 
@@ -207,8 +207,7 @@
     <div class="fillin_ft">
         <button type="submit"><span>提交订单</span></button>
 <!--        <a href="--><?//=\yii\helpers\Url::to(['list/success'])?><!--"><span>提交订单</span></a>-->
-        <p>应付总额：<strong>￥5076.00元</strong></p>
-
+        <p>应付总额：<strong>￥<?=$a?>元</strong></p>
     </div>
     </form>
 </div>

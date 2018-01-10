@@ -43,7 +43,9 @@ class ListController extends Controller
      $photh = GoodsGallery::find()->where(['goods_id'=>$id])->all();//相册
 //     var_dump($photh);
 //     die;
+//        $goodsshop = $this->render('goods',['content'=>$content,'goods'=>$goods,'photh'=>$photh]);
         return $this->render('goods',['content'=>$content,'goods'=>$goods,'photh'=>$photh]);
+//        file_put_contents('$goods->id.html',$goodsshop);
     }
     //添加购物车成功页面
     public function actionAddToCart($goods_id,$amount){

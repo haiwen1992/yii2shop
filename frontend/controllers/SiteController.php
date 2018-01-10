@@ -76,7 +76,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $contents = $this->render('index');
+        file_put_contents('index.html',$contents);
+        //return $this->render('index');
+//        echo '首页静态化实现';
+    }
+    //获取用户是否登录
+    public function actionUserStatus(){
+        if(Yii::$app->user->isGuest){
+            $result = [
+              'is_login'=>false,
+                'username'=>null
+            ];
+        }else{
+            $result = [
+            'is_login'=>true,
+            'username'=>Yii::$app->user->identity->username
+                ];
+        }
+        return json_encode($result);
     }
 
     /**
